@@ -46,7 +46,25 @@ This project follows a complete analytics workflow — including data preparatio
 
 <br>
 <h2><a class="anchor" id="customerLevel"></a>Cohort Analysis based on Customer Counts</h2>
-This analysis examines customer retention by counting distinct customers in each cohort across subsequent months. Cohorts are defined based on each customer's first purchase month, allowing us to track how long customers remain active after initial purchase. By observing changes in customer counts across different cohorts or months, this reveals key retention patterns such as when engagement drops or how different customer groups behave over time. This insight help retailers understand customer behavior trends, identify drop-off points and make targeted improvements to increase retention for long-term customer value. 
+
+<p align=justify>
+This analysis examines customer retention by counting distinct customers in each cohort across subsequent months. Cohorts are defined based on each customer's first purchase month, allowing us to track how long customers remain active after initial purchase. By observing changes in customer counts across different cohorts or months, this reveals key retention patterns such as when engagement drops or how different customer groups behave over time. This insight help retailers understand customer behavior trends, identify drop-off points and make targeted improvements to increase retention for long-term customer value. </p>
+
+In this analysis, the transaction data
+
+| InvoiceNo | StockCode |                         Description | Quantity | InvoiceDate | UnitPrice | CustomerID |        Country | Revenue |
+|----------:|----------:|------------------------------------:|---------:|------------:|----------:|-----------:|---------------:|--------:|
+| 536365    | 85123A    | WHITE HANGING HEART T-LIGHT HOLDER  | 6        | 2010-12-01  | 2.55      | 17850      | United Kingdom | 15.30   |
+| 536365    | 71053     | WHITE METAL LANTERN                 | 6        | 2010-12-01  | 3.39      | 17850      | United Kingdom | 20.34   |
+| 536365    | 84406B    | CREAM CUPID HEARTS COAT HANGER      | 8        | 2010-12-01  | 2.75      | 17850      | United Kingdom | 22.00   |
+| 536365    | 84029G    | KNITTED UNION FLAG HOT WATER BOTTLE | 6        | 2010-12-01  | 3.39      | 17850      | United Kingdom | 20.34   |
+| 536365    | 84029E    | RED WOOLLY HOTTIE WHITE HEART.      | 6        | 2010-12-01  | 3.39      | 17850      | United Kingdom | 20.34   |
+| 536365    | 22752     | SET 7 BABUSHKA NESTING BOXES        | 2        | 2010-12-01  | 7.65      | 17850      | United Kingdom | 15.30   |
+| 536365    | 21730     | GLASS STAR FROSTED T-LIGHT HOLDER   | 6        | 2010-12-01  | 4.25      | 17850      | United Kingdom | 25.50   |
+| 536366    | 22633     | HAND WARMER UNION JACK              | 6        | 2010-12-01  | 1.85      | 17850      | United Kingdom | 11.10   |
+| 536366    | 22632     | HAND WARMER RED POLKA DOT           | 6        | 2010-12-01  | 1.85      | 17850      | United Kingdom | 11.10   |
+| 536367    | 84879     | ASSORTED COLOUR BIRD ORNAMENT       | 32       | 2010-12-01  | 1.69      | 13047      | United Kingdom | 54.08   |
+
 
 **Query Breakdown:**
 ```sql
@@ -113,4 +131,28 @@ PIVOT(
 	 FOR Cohort_Index IN ([0], [1], [2], [3], [4], [5], [6] , [7], [8], [9], [10], [11], [12])
 ) AS pivot_tbl;
 
+
+-- view the result
+SELECT * FROM #pivoted_table;
+
 ```
+<br>
+This will represent each row as `Cohort_Months` based on their first purchase month, columns will show how many months have passed since the initial purchase month (`Month_0`,`MOnth_1`,`Month_2`,...`Month_12`), and the values will show number of distinct customers count who made at least one purchase during that corresponding month index.<br><br>
+
+**Outcome**
+
+| Cohort_Month | Month_0 | Month_1 | Month_2 | Month_3 | Month_4 | Month_5 | Month_6 | Month_7 | Month_8 | Month_9 | Month_10 | Month_11 | Month_12 |
+|--------------|---------|---------|---------|---------|---------|---------|---------|---------|---------|---------|----------|----------|----------|
+| 2010-12-01   | 885     | 324     | 286     | 340     | 321     | 352     | 321     | 309     | 313     | 350     | 331      | 445      | 235      |
+| 2011-01-01   | 416     | 92      | 111     | 96      | 134     | 120     | 103     | 101     | 125     | 136     | 152      | 49       |          |
+| 2011-02-01   | 380     | 71      | 71      | 108     | 103     | 94      | 96      | 106     | 94      | 116     | 26       |          |          |
+| 2011-03-01   | 452     | 68      | 114     | 90      | 101     | 76      | 121     | 104     | 126     | 39      |          |          |          |
+| 2011-04-01   | 300     | 64      | 61      | 63      | 59      | 68      | 65      | 78      | 22      |         |          |          |          |
+| 2011-05-01   | 284     | 54      | 49      | 49      | 59      | 66      | 75      | 26      |         |         |          |          |          |
+| 2011-06-01   | 242     | 42      | 38      | 64      | 56      | 81      | 23      |         |         |         |          |          |          |
+| 2011-07-01   | 188     | 34      | 39      | 42      | 51      | 21      |         |         |         |         |          |          |          |
+| 2011-08-01   | 169     | 35      | 42      | 41      | 21      |         |         |         |         |         |          |          |          |
+| 2011-09-01   | 299     | 70      | 90      | 34      |         |         |         |         |         |         |          |          |          |
+| 2011-10-01   | 358     | 86      | 41      |         |         |         |         |         |         |         |          |          |          |
+| 2011-11-01   | 323     | 36      |         |         |         |         |         |         |         |         |          |          |          |
+| 2011-12-01   | 41      |         |         |         |         |         |         |         |         |         |          |          |          |
