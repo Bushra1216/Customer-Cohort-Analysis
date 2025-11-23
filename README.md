@@ -50,7 +50,7 @@ This project follows a complete analytics workflow — including data preparatio
 <p align=justify>
 This analysis examines customer retention by counting distinct customers in each cohort across subsequent months. Cohorts are defined based on each customer's first purchase month, allowing us to track how long customers remain active after initial purchase. By observing changes in customer counts across different cohorts or months, this reveals key retention patterns such as when engagement drops or how different customer groups behave over time. This insight help retailers understand customer behavior trends, identify drop-off points and make targeted improvements to increase retention for long-term customer value. </p>
 
-In this analysis, the transaction data
+The normalized transaction data includes `InvoiceNo`, `StockCode`, `Description`, `Quantity`, `InvoiceDate`, `UnitPrice`, `CustomerID`, `Country`, `Revenue` key fields and in this analysis we mainly focused on `InvoiceDate` and `CustomerID` attributes.
 
 | InvoiceNo | StockCode |                         Description | Quantity | InvoiceDate | UnitPrice | CustomerID |        Country | Revenue |
 |----------:|----------:|------------------------------------:|---------:|------------:|----------:|-----------:|---------------:|--------:|
