@@ -136,8 +136,8 @@ PIVOT(
 SELECT * FROM #pivoted_table;
 
 ```
-<br>
-This will represent each row as `Cohort_Months` based on their first purchase month, columns will show how many months have passed since the initial purchase month (`Month_0`,`MOnth_1`,`Month_2`,...`Month_12`), and the values will show number of distinct customers count who made at least one purchase during that corresponding month index.<br><br>
+
+This will represent each row as `Cohort_Months` based on their first purchase month, columns will show how many months have passed since the initial purchase month (`Month_0`, `MOnth_1`, `Month_2`,...`Month_12`), and the values will show number of distinct customers count who made at least one purchase during that corresponding month index.<br><br>
 
 **Outcome**
 
