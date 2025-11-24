@@ -66,7 +66,8 @@ The normalized transaction data includes `InvoiceNo`, `StockCode`, `Description`
 | 536367    | 84879     | ASSORTED COLOUR BIRD ORNAMENT       | 32       | 2010-12-01  | 1.69      | 13047      | United Kingdom | 54.08   |
 
 
-**Query Breakdown:**
+
+**Customer Counts by Cohort:**
 ```sql
 --In CTE1 we defined customer's purchasing date and first purchasing date as cohorts by customer id
 WITH CTE AS(
