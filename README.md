@@ -157,3 +157,15 @@ This will represent each row as `Cohort_Months` based on their first purchase mo
 | 2011-10-01   | 358     | 86      | 41      |         |         |         |         |         |         |         |          |          |          |
 | 2011-11-01   | 323     | 36      |         |         |         |         |         |         |         |         |          |          |          |
 | 2011-12-01   | 41      |         |         |         |         |         |         |         |         |         |          |          |          |
+
+
+
+**Obervations**
+The resulted matrix shows the absolute number of customers retained over 12 months following their initial purchase month(Month_0). Across all cohorts, customer retention is high in Month_0 and retention drops sharply from Month_1, indicating that a large portion of customers do not return immediately after their first purchase. 
+
+- The **December 2010** or (2010-12-01) cohort bring out the strongest long-term performance, starts with 885 customer and **~37%** return in Month_1. After the early decline, this cohort seems to stabilize around **~300-350** active customers across several months. Then a significant spike appears at November(Month_11), with retention above 50%, that might be driven by an offer or a seasonal event which reactivated many customers. This behavior can be investigated and replicated if beneficial.
+- In **January 2011** cohort(2011-01-01), out of **416**, 92 remained active in the next month. Then a noticeable bump reappears at Month_10 (152 customers, suggesting a seasonal influence rather than a sustained retention trend.
+- Later on February 2011 cohort, total acquired **380** customers, indicating weaker early retention comapred to December 2010. Though there are small recoveries around (Month_3 to Month_4) and (Month_7 to Month_9), the overall tail is smaller and less stable.
+From horizontal view, we found that, every cohort experiences a steep drop immediately after acquisition. The earliest cohort 2010-12, maintains highest long-term retention simply because it began with large customer base. Later cohorts tend to churn more quickly and settle at lower customer counts. Occational spikes in certain months likely reflect promotions or seasonality.<br>
+
+Now, if we read the columns vertically, acquisitions peaked very high in 2010-12 then started declining through mid 2011, with a small recovery during September-November 2011. In December 2011 cohort (2011-12-01) , acquisition drops substantially to only 41 customers. At Month_1 retention also fluctuates, with later cohorts (2011-09 and 2011-10) showing slightly better Month_1 counts (70 and 86), which indicates a potential improvement in early retention or acquisition quality.
