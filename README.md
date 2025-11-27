@@ -191,7 +191,7 @@ WITH CTE1 AS(
      SELECT DATEFROMPARTS(YEAR(InvoiceDate),MONTH(InvoiceDate),1) AS Purchase_Date
             MIN(DATEFROMPARTS(YEAR(InvoiceDate),MONTH(InvoiceDate),1)) 
 			OVER(PARTITION BY CustomerID ORDER BY InvoiceDate) AS Cohort_Month,
-			CAST(Revenue AS int) AS Revenue
+			Revenue
      FROM ##RETAIL_UNIQUE_DATA
 ),
 CTE2 AS(
@@ -214,6 +214,19 @@ PIVOT(
 ORDER BY Cohort_Month;
 ```
 
+
+
+Explanation:<br>
+1. CTE - Determining Purchase Context:<br>
+- Similar to the first analysis, this CTE defines Purchase_Date and Cohort_Month using window function that assigned each customer to the first day of their initial purchase month.
+2. CTE2 - Calculating Cohort Index:<br>
+- Mirrors previous analysis, CTE2 determines the difference in months between the first purchase month and purchase months.
+3. Final Query - Aggregating Revenue and Pivoting data<br>
+- This will generate total revenue for each `Cohort_Index` and transform rows into columns. Then the outer select will return final matrix table by rounding and formatting values.
+
+<br>
+
+
 **Query Outcome**
 
 | Cohort_Month | Month_0            | Month_1            | Month_2            | Month_3            | Month_4            | Month_5             | Month_6             | Month_7            | Month_8             | Month_9            | Month_10           | Month_11           | Month_12 |
@@ -231,3 +244,10 @@ ORDER BY Cohort_Month;
 | 2011-10-01   |          167,832   |            37,892  |            12,138  |                    |                    |                     |                     |                    |                     |                    |                    |                    |          |
 | 2011-11-01   |          129,676   |            14,661  |                    |                    |                    |                     |                     |                    |                     |                    |                    |                    |          |
 | 2011-12-01   |            26,550  |                    |                    |                    |                    |                     |                     |                    |                     |                    |                    |                    |          |
+
+
+
+
+
+
+
