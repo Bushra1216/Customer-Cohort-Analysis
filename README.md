@@ -253,19 +253,23 @@ This analysis tracks how much revenue each cohort generates over the subsequent 
 Observing the **December 2010** Cohort (2010-12-01), we see that this cohort not only retained the highest number of customers (as seen before) but also generated high amount of revenue.
 - Month_0 revenue: 557,570
 - Month_1 revenue drops to: 270,995
-- After Month_1, the cohort stabilizes around 200k-330k
-Afterwards, this cohort shows enormous revenue spikes from Aug 2010 to Nov 2010 (Month_8–Month_11), such as-
+- After Month_1, the cohort stabilizes around 200k-330k<br>
+
+<p>Afterwards, this cohort shows enormous revenue spikes from Aug 2010 to Nov 2010 (Month_8–Month_11), such as-</p>
+
 - 325,511 in Month_8
 - 465,060 in Month_9
 - 448,944 in Month_10
 - 501,206 in Month_11
-This cohort likely benefited from strong product promotions or a seasonal event. In **2011-01-01** cohort, again sharp drop from Month_0 to Month_1, then relatively stable ~60k–80k for a while. Like the Dec 2010 cohort (2010-12-01) it has a late bump in Month_9 with 106,786 and Month_10 with 120,204 revenue. Month_11 drops again (25k), possibly end of season.<br>
-Mid cohorts such as 2011-04-01, 2011-05-01, 2011-06-01, 2011-07-01 experienced faster revenue decay. Started with reasonable revenue of (120k-150k) range, then dropped to **20k-30k** range and declined sharply with very small tails afterward. This indicates lower quality acquisition or weaker product performance during that period. These customers have much lower lifetime value compared to earlier cohorts. Last cohort of 2011 shows collapse in revneue. The Dec 2011 cohort (2011-12-01) generated only 26,550 in Month_0 and disappears immediately.<br>
+<p align=justify>This cohort likely benefited from strong product promotions or a seasonal event. In **2011-01-01** cohort, again sharp drop from Month_0 to Month_1, then relatively stable ~60k–80k for a while. Like the Dec 2010 cohort (2010-12-01) it has a late bump in Month_9 with 106,786 and Month_10 with 120,204 revenue. Month_11 drops again (25k), possibly end of season.</p>
+<p align=justify>
+Mid cohorts such as **2011-04-01, 2011-05-01, 2011-06-01, 2011-07-01** experienced faster revenue decay. Started with reasonable revenue of (120k-150k) range, then dropped to **20k-30k** range and declined sharply with very small tails afterward. This indicates lower quality acquisition or weaker product performance during that period. These customers have much lower lifetime value compared to earlier cohorts. Last cohort of 2011 shows collapse in revneue. The Dec 2011 cohort (2011-12-01) generated only 26,550 in Month_0 and disappears immediately.</p>
+
 From overall horizontal view across cohorts-
 - Month_0 is consistently the highest revenue month for every cohort
 - Month_1 always shows weak early repeat purchasing
-- Some cohorts experience late-period revenue increases, especially between Month_9 and Month_11
-<br>
+- Some cohorts experience late-period revenue increases, especially between Month_9 and Month_11<br>
+
 Now from vertical pattern view-
 - Early cohorts (2010-01, 2011-01, 2011-02, and 2011-03) have stronger mid-life revenue
 - Later cohorts (2011-07,2011-08, 2011-09) have smaller absolute amounts, but some spikes in 2011-10 and 2011-11
