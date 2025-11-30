@@ -1,0 +1,42 @@
+
+Returning_Customers = 
+VAR current_month = MAX(dim_calendar[Date])
+VAR last_month = EOMONTH(current_month, -1)
+
+VAR customerList_thisMonth =   --this part will return customers who bought in the current month
+    CALCULATETABLE(
+        VALUES(cleaned_online_retail[CustomerID]),
+        FILTER(
+            ALL(dim_calendar[Date]),
+            dim_calendar[Date] >= DATE(YEAR(current_month), MONTH(current_month), 1)-- from first day of current month
+            && dim_calendar[Date] <= EOMONTH(current_month, 0)--to last day of current month
+        )
+    )
+
+VAR customers_lastMonth =  --will return customers who purchased in last month
+    CALCULATETABLE(
+        VALUES(cleaned_online_retail[CustomerID]),
+        FILTER(
+            ALL(dim_calendar[Date]),
+            dim_calendar[Date] >= DATE(YEAR(last_month), MONTH(last_month), 1)
+            && dim_calendar[Date] <= EOMONTH(last_month, 0)
+        )
+    )
+
+VAR CustomersBeforeLastMonth =  --this part will return customers who purchased any month before last month
+    CALCULATETABLE(
+        VALUES(cleaned_online_retail[CustomerID]),
+        FILTER(
+            ALL(dim_calendar[Date]),
+            dim_calendar[Date] < DATE(YEAR(last_month), MONTH(last_month), 1)
+        )
+    )
+
+VAR list_of_returning =
+    EXCEPT(
+        INTERSECT(customerList_thisMonth, UNION(customers_lastMonth, CustomersBeforeLastMonth)), -- all old customers who returned
+        INTERSECT(customerList_thisMonth, customers_lastMonth) -- retained customer who bought last month and this month
+    )
+
+RETURN
+COUNTROWS(list_of_returning)
