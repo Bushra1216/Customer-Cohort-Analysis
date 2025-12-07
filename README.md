@@ -282,3 +282,7 @@ Now from vertical pattern view-
 <h2><a class="anchor" id="set_goal"></a>Visualizations</h2>
 <h3><a class="anchor" id="rt"></a>Monthly Cohort Analysis</h3>
 <img width="1315" height="789" alt="Image" src="https://github.com/user-attachments/assets/c9ad90ad-9d98-482c-bf45-4ba89ab168d5" />
+<br>
+<p></p>
+<br>
+<img width="1313" height="786" alt="Image" src="https://github.com/user-attachments/assets/498d7ec2-f9bf-4bca-b793-d05b944ec2b7" />
