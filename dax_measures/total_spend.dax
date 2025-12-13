@@ -1,0 +1,3 @@
+
+
+total_spend = SUM(cleaned_online_retail[Revenue])
