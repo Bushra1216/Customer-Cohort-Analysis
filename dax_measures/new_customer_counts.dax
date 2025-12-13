@@ -1,0 +1,32 @@
+
+
+New_Customers = 
+VAR Current_Month = MAX(dim_calendar[Date])
+VAR StartOf_CurrentMonth = DATE(YEAR(Current_Month),MONTH(Current_Month),1)
+
+
+VAR List_CustomersThisMonth = 
+    CALCULATETABLE(
+        VALUES(cleaned_online_retail[CustomerID]),
+        FILTER(
+            ALL(dim_calendar[Date]),
+            dim_calendar[Date] >= StartOf_CurrentMonth
+            && dim_calendar[Date] < EOMONTH(Current_Month,0)
+        )
+    )
+
+
+VAR List_PreviousCustomers = -- will return customers who purchased before current month
+    CALCULATETABLE(
+        VALUES(cleaned_online_retail[CustomerID]),
+        FILTER(
+            ALL(dim_calendar[Date]),
+            dim_calendar[Date] < StartOf_CurrentMonth
+           
+        )
+    )
+
+
+VAR NewCustomers_List = EXCEPT(List_CustomersThisMonth,List_PreviousCustomers)
+RETURN
+COUNTROWS(NewCustomers_List)
