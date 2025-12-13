@@ -35,7 +35,7 @@ GO
 select * from RETAIL;
   
 
---Import data from csv file into the RETAIL table using bulk insert method
+--Import data from csv file into RETAIL table using BULK INSERT method
 BULK INSERT RETAIL FROM 'C:\Users\Shanj\OneDrive\Desktop\data analysis\dataset\cleaned_retail.csv'
 WITH (
     FIRSTROW=2,
@@ -82,7 +82,11 @@ SELECT * FROM ##RETAIL_UNIQUE_DATA;
 
 
 
---Customer retention cohort
+
+
+
+
+--Calculating customer retention cohort
 WITH CTE AS(
      SELECT CustomerID, 
 	        DATEFROMPARTS(YEAR(InvoiceDate),MONTH(InvoiceDate),1) AS Purchase_Date,
@@ -106,11 +110,12 @@ GROUP BY Cohort_Month, Cohort_Index
 ORDER BY Cohort_Month, Cohort_Index ASC;
 
 
+
 SELECT * FROM #CohortTable;
 
 
 
--- pivot to a matrix for visualization
+-- pivot to a matrix for visualization using PIVOT()
 SELECT Cohort_Month,
        [0] AS Month_0, 
 	   [1] AS Month_1, 
@@ -196,7 +201,7 @@ ORDER BY Cohort_Month;
 
 
 
--- whole table import in power bi
+-- cleaned cohort data import in power bi
 WITH CTE AS(
     SELECT InvoiceNo, StockCode, Description, Quantity, InvoiceDate, UnitPrice, CustomerID, Country, Revenue, 
 	        DATEFROMPARTS(YEAR(InvoiceDate),MONTH(InvoiceDate),1) AS Purchase_Date,
