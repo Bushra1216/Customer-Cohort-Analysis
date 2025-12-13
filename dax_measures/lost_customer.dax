@@ -1,0 +1,24 @@
+
+
+Lost_Customers = 
+VAR currentMonth=MAX(dim_calendar[Date])
+VAR lastMonth=EOMONTH(currentMonth,-1)
+
+VAR customer_lastMonth=CALCULATETABLE(
+                        VALUES(cleaned_online_retail[CustomerID]),
+                        FILTER(ALL(dim_calendar[Date]),
+                        'dim_calendar'[Date]>=DATE(Year(lastMonth),Month(lastMonth),1)
+                        && 'dim_calendar'[Date]<=EOMONTH(lastMonth,0)
+                        )
+)  
+
+VAR customer_currentMonth=CALCULATETABLE(VALUES(cleaned_online_retail[CustomerID]),
+                            FILTER(ALL(dim_calendar[Date]),
+                            'dim_calendar'[Date]>=DATE(Year(currentMonth),MONTH(currentMonth),1)
+                            && dim_calendar[Date]<=EOMONTH(currentMonth,0))
+)
+
+RETURN
+COUNTROWS(
+    EXCEPT(customer_lastMonth,customer_currentMonth)
+)
