@@ -1,0 +1,3 @@
+
+
+unique_customers = DISTINCTCOUNT(cleaned_online_retail[CustomerID])
